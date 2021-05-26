@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const data = [
+// const data = [
 
-];
+// ];
 
 const Gallery = () => (
     <GalleryContainer>

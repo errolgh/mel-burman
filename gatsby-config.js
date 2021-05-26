@@ -33,6 +33,34 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
+    `gatsby-plugin-sharp`, 
+    `gatsby-transformer-sharp`,
+    // in order to access hi-fi images from graphql and present them to our user ^^
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
+      },
+    }, // in order to process mdx files and make them accessible to graphql dynamically,
+    //check the docs for this, if you ever want to make layouts for your posts, there are cool options for this
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `roboto mono`,
+          `muli\:400,400i,700,700i`,
+        ],
+        display: "swap",
+      }
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
