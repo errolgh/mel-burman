@@ -1,11 +1,6 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+// See: https://www.gatsbyjs.com/docs/gatsby-config/
 
 module.exports = {
-  /* Your site config here */
   siteMetadata: {
     title: `Melony Arthur`,
     // siteUrl: `https://www.gatsbyjs.com`,
@@ -13,44 +8,15 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/src/posts/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-filesystem`,  // StaticImage
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
       },
     },
-    `gatsby-plugin-sharp`, 
-    `gatsby-transformer-sharp`,
-    // in order to access hi-fi images from graphql and present them to our user ^^
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.md`, `.mdx`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1200,
-            },
-          },
-        ],
-      },
-    }, // in order to process mdx files and make them accessible to graphql dynamically,
-    //check the docs for this, if you ever want to make layouts for your posts, there are cool options for this
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,  // GatsbyImage
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -64,11 +30,22 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-manifest`, //for pwa
       options: {
-        icon: 'src/assets/site-favicon.png',
+        name: `mel-burman`,
+        start_url: `/`,
+        icon: 'src/images/enlightenment.jpg',
       }
     },
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-source-strapi`, // links your gatsby site to a strapi backend
+      options: {
+        apiURL: `http://localhost:1337`,
+        queryLimit: 10000, // Defaults to 100
+        collectionTypes: [ // seems to work contentTypes as well
+          `entry`,
+        ]
+      },
+    },
   ],
 }
