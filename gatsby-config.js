@@ -7,6 +7,11 @@ module.exports = {
     description: `A Baltimore-based artist`,
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,  // GatsbyImage
+    `gatsby-plugin-image`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,  // StaticImage
       options: {
@@ -14,21 +19,6 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,  // GatsbyImage
-    `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `roboto mono`,
-          `muli\:400,400i,700,700i`,
-        ],
-        display: "swap",
-      }
-    },
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`, //for pwa
       options: {

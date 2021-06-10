@@ -2,13 +2,8 @@ import React from "react"
 import Gallery from "../components/Gallery"
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import { Container } from '../components/Container'
 import { graphql } from 'gatsby'
-import { 
-  GatsbyImage,
-  // getImage, 
-  // withArtDirection
-} from "gatsby-plugin-image"
+
 
 export default function Home( { data }) {
   return (
@@ -21,21 +16,7 @@ export default function Home( { data }) {
         // Boolean indicating whether this is an article:
         // article
       />
-      <Container>
-        <h1>Hello World</h1>
-        {data.allStrapiEntry.nodes.map(entry => (
-          <div>
-            {entry.name}
-            <GatsbyImage
-              image={entry.cover.localFile.childImageSharp.gatsbyImageData}
-              alt={entry.name}
-              loading='eager'
-              layout="fullWidth"
-            />
-          </div>
-        ))}
-      </Container>
-      <Gallery/>
+      <Gallery data={data.allStrapiEntry.nodes} />
     </Layout>
   )
 }
@@ -49,6 +30,7 @@ export const pageQuery = graphql`
           name
           description
           classification
+          slug
           cover {
             localFile {
               childImageSharp {
@@ -70,6 +52,7 @@ export const pageQuery = graphql`
         name
         description
         classification
+        slug
         cover {
           localFile {
             childImageSharp {
@@ -90,4 +73,3 @@ export const pageQuery = graphql`
 ` 
 // yes, this query could be cleaner 
 // but I need to research which digestion methods are best and why
-

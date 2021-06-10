@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --text-dark: #222222;
 
     /* from tut https://anobjectisa.com/?p=335 */
-    --card_width: 250px;
+    --card_width: 300px;
     /* --card_width: 300px; */
     --row_increment: 10px;
     --card_border_radius: 16px;
