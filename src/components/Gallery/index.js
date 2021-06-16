@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import EntryCard from '../../components/EntryCard'
 
-
+// all the smaller components that make up the larger gallery component should be exported enmasse and rendered here
 const Gallery = ({ data }) => {
     return (
         <GalleryContainer>

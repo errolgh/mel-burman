@@ -13,6 +13,7 @@ export const Column = styled.div`
   }
   &:hover {
     /* -webkit-filter: brightness(70%); */
+    /* -webkit-backdrop-filter: blur(10px); */
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;

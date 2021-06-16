@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     // add your variable colors and stuff here
     --main-font: 'Barlow Semi Condensed', sans-serif;
     --text-dark: #222222;
+    --text-light: #5f5f5f;
 
     /* from tut https://anobjectisa.com/?p=335 */
     --card_width: 300px;
@@ -27,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: #FAFAFA;
     /* background: #555; */
-    color: #222222;
+    color: var(--text-dark);
     font-family: var(--main-font);
     font-size: 23px;
     overflow-x: hidden;

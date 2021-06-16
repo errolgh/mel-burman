@@ -27,9 +27,9 @@ const ListItem = styled.li`
 const Nav = () => {
     return (
         <NavBar>
-            <div>Melony Arthur</div>
+            <div><Link to="/" >Melony Arthur</Link></div>
             <LinksList>
-                <ListItem><Link to="/" >Home</Link></ListItem>
+                {/* <ListItem><Link to="/" >Home</Link></ListItem> */}
                 <ListItem><Link to="/gallery" >Gallery</Link></ListItem>
                 <ListItem><Link to="/shop" >Shop</Link></ListItem>
                 <ListItem><Link to="/contact" >Contact</Link></ListItem>

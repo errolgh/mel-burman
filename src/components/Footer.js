@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const FooterContainer = styled.footer`
     display: flex;
     justify-content: center;
+    margin-top: 200px;
 `;
 
 const Footer = () => {
