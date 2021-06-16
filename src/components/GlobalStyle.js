@@ -25,7 +25,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: white;
+    background: #FAFAFA;
+    /* background: #555; */
     color: #222222;
     font-family: var(--main-font);
     font-size: 23px;
