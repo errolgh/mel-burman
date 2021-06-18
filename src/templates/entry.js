@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import styled from 'styled-components';
@@ -58,24 +58,57 @@ const Button = styled.button`
     }
 `
 
-const EntryTemplate = ( {data} ) => (
-    <Layout>
-    {console.log("EntryTemplate.render data: ", data)}
-        <EntryDetailsContainer>
-            <StyledCoverImage
-                image={data.strapiEntry.cover.localFile.childImageSharp.gatsbyImageData}
-                alt={data.strapiEntry.name}
-                loading='eager'
-                formats={['AUTO', 'WEBP', 'AVIF']}
-            />
-            <EntryDetails>
-                <h2>{data.strapiEntry.name}</h2>
-                <p>{data.strapiEntry.description}</p>
-                <Button><Link to="/">Back to Gallery</Link></Button>
-            </EntryDetails>
-        </EntryDetailsContainer>
-    </Layout>
-)
+const ImageArrayContainer = styled.div`
+    width: 120px;
+    height: 100%;
+`
+
+
+const handleImageSelect = () => {
+    console.log("ayo we selectin' out here, fam.")
+    //change current image here
+}
+
+
+
+
+
+
+const EntryTemplate = ( {data} ) => {
+    const [ imageArray, setImageArray ] = useState([]) //for functionality of imageArray + cover image
+    const [ currentPicture, setCurrentPicture ] = useState(null) // to change current image
+    
+    return (
+        <Layout>
+        {/* {console.log("EntryTemplate.render data: ", data)} */}
+            <EntryDetailsContainer>
+                <ImageArrayContainer>
+                    {data.strapiEntry.album.map(deckImg => {
+                            // console.log(deckImg.localFile.childrenImageSharp[0].gatsbyImageData)
+                            return <GatsbyImage
+                            onClick={handleImageSelect}
+                            image={deckImg.localFile.childrenImageSharp[0].gatsbyImageData}
+                            // alt={deckImg.strapiEntry.name}
+                            loading='eager'
+                            formats={['AUTO', 'WEBP', 'AVIF']}
+                        />
+                    })}
+                </ImageArrayContainer>
+                <StyledCoverImage
+                    image={data.strapiEntry.cover.localFile.childImageSharp.gatsbyImageData}
+                    alt={data.strapiEntry.name}
+                    loading='eager'
+                    formats={['AUTO', 'WEBP', 'AVIF']}
+                />
+                <EntryDetails>
+                    <h2>{data.strapiEntry.name}</h2>
+                    <p>{data.strapiEntry.description}</p>
+                    <Button><Link to="/">Back to Gallery</Link></Button>
+                </EntryDetails>
+            </EntryDetailsContainer>
+        </Layout>
+    )
+}
 
 export default EntryTemplate
 
