@@ -1,13 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
+import '@fontsource/roboto-condensed';
 
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@200;400;500;600;700&display=swap');
   :root {
     // add your variable colors and stuff here
-    --main-font: 'Barlow Semi Condensed', sans-serif;
+    /* --main-font: 'Barlow Semi Condensed', sans-serif; */
+    --main-font: 'Roboto Condensed', sans-serif;
+    --main-font: 'Roboto', sans-serif;
     --text-dark: #222222;
     --text-light: #5f5f5f;
+    --highlight: #0082ff;
 
     /* from tut https://anobjectisa.com/?p=335 */
     --card_width: 300px;

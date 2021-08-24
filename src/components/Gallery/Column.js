@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Column = styled.div`
   height: auto;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   break-inside: avoid-column;
   overflow: hidden;
   img,

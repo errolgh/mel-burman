@@ -2,14 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import EntryCard from '../../components/EntryCard'
 
-// all the smaller components that make up the larger gallery component should be exported enmasse and rendered here
 const Gallery = ({ data }) => {
     return (
-        <GalleryContainer>
-            {data.map(entry => (
-                <EntryCard entry={entry}/>
-            ))}
-        </GalleryContainer>
+      <ComponentWrapper>
+          <MajorPageSection>
+            <GalleryTitle>Gallery</GalleryTitle>
+            <GallerySection>
+                {data.map(entry => (
+                    <EntryCard entry={entry}/>
+                ))}
+            </GallerySection>
+          </MajorPageSection>
+        </ComponentWrapper>
     )
 };
 
@@ -19,11 +23,29 @@ const large = 1200;
 const mediumm = 900;
 const small = 600;
 
-const GalleryContainer = styled.section`
-  max-width: 100vw;
+const ComponentWrapper = styled.div`
+  background-color: #ededed;
+`
+
+const MajorPageSection = styled.div`
+  padding-top: 40px;
+  margin: 0 auto;
+  max-width: 1200px;
+`
+
+const GalleryTitle = styled.h2`
+  text-align: center;
+  font-family: "Dancing Script", "Lucida Handwriting";
+  font-size: 40px;
+  margin-bottom: 60px;
+`
+
+
+const GallerySection = styled.section`
   height: auto;
-  margin: 40px;
-  column-count: 6;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  column-count: 5;
   @media (max-width: ${large}px) {
     column-count: 4;
   }

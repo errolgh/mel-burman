@@ -3,19 +3,13 @@ import Nav from './Nav'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
 import GlobalStyle from './GlobalStyle'
-/*
-
-the layout component queries data with the useStaticQuery hook
-
-https://www.gatsby.com/docs/use-static-query/
-
-*/
+// import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-
+import "@fontsource/dancing-script"
 
 const Layout = ({children}) => {
     const data = useStaticQuery(graphql`
-        query SiteTitleQuery {
+        query SiteUrlQuery {
             site {
                 siteMetadata {
                     title
@@ -27,7 +21,7 @@ const Layout = ({children}) => {
 
 
     return (
-        <>
+        <div>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{data.site.siteMetadata.title}</title>
@@ -35,9 +29,11 @@ const Layout = ({children}) => {
             </Helmet>
             <GlobalStyle />
             <Nav />
-                {children}
+                <div>
+                    {children}
+                </div>
             <Footer />
-        </>
+        </div>
     )
 }
 
