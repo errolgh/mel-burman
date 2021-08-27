@@ -2,39 +2,92 @@ import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { FaTimes, FaBars } from 'react-icons/fa'
+import { AiFillCaretDown as Caret } from 'react-icons/ai'
+import Dropdown from './dropdown'
 
 const NavBar = styled.nav`
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
-    padding: 0 40px;
     margin: 0 auto;
     width: 100%;
     align-items: center;
+    height: 10vh;
+    padding: 30px;
+
+    @media(min-width: 768px){
+        padding: 0 40px;        
+    }
+`;
+
+const Logo = styled.div`
+     letter-spacing: -1px;
+     font-size: 36px;
 `;
 
 const LinksList = styled.ul`
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     text-transform: uppercase;
-    margin: 0;
-    padding: 0;
+    justify-content: start;
+    width: 100%;
+    height: 90vh;
     font-size: 16px;
     font-weight: lighter;
     color: #595959;
-    `;
+    background: #fafafa;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10vh;
+    left: -100%; // this is the code the makes it drawer from the left
+    opacity: 0;
+    transition: all 0.6s ease;
+    
+    @media(min-width: 768px){
+        opacity: 1;
+        height: 100%;
+        justify-content: space-around;
+        position: static;
+        width: auto;
+        flex-direction: row;
+    }
+
+    &.active {
+        left: 0;
+        opacity: 1;
+        /* transition: all 0.6s ease; */
+        z-index: 1;
+    }
+`;
 
 const ListItem = styled.li`
-    transition: 0.7s;
-    padding: 4vh 26px;
+    transition: 0.5s;
+    padding: 4vh 20px;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    height: 80px;
+    display: flex;
+
+    @media(min-width: 768px) {
+        /* display: block; */
+        height: 100%;
+    }
     &:hover {
         background-color: #E9E9E9;
     }
 `;
 
 const HamburgerIcon = styled.div`
-    /* display: none; */
+    cursor: pointer;
     color: #595959;
+    transform: scale(1.2);
+
+    // media query for desktop view
+    @media(min-width: 768px){
+        display: none;
+    }
 `;
 
 const Nav = () => {
@@ -59,37 +112,38 @@ const Nav = () => {
             setDropdown(false)
         }
     }
+    // apparently <Link /> belongs on the inner most....
     return (
         <NavBar>
-            {/* <div> */}
-                <Link style={{letterSpacing: -1, fontSize: 36}} to="/">
-                    <div>M. Arthur</div>
+            <Logo>
+                <Link onClick={closeMobileMenu} to="/">M. Arthur</Link>
+            </Logo>    
+            <HamburgerIcon onClick={handleClick}> 
+                {click ? <FaTimes/> : <FaBars/>}
+            </HamburgerIcon>
+            <LinksList className={click ? 'active' : ''}>
+                <Link onClick={closeMobileMenu} to="/" activeStyle={{color: "#000", fontWeight: "bolder"}}>
+                    <ListItem>Home</ListItem>
                 </Link>
-                <HamburgerIcon onClick={handleClick}> 
-                   {
-                       click ? <FaTimes/> : <FaBars/>  //"menu-icon" class in brian design videos
-                   }
-                </HamburgerIcon>
-                <LinksList>
-                    <Link to="/" activeStyle={{color: "#000", fontWeight: "bolder"}}>
-                        <ListItem>Home</ListItem>
-                    </Link>
-                    <Link to="/gatsby" activeStyle={{color: "#000", fontWeight: "bolder"}}>
-                        <ListItem>Gallery</ListItem>
-                    </Link>
-                    <Link to="/artists" activeStyle={{color: "#000", fontWeight: "bolder"}}>
-                        <ListItem>Artists</ListItem>
-                    </Link>
-                    <Link to="/contact" activeStyle={{color: "#000", fontWeight: "bolder"}}>
-                        <ListItem>Contact</ListItem>
-                    </Link>
-                </LinksList>
-            {/* </div> */}
+                <Link onClick={closeMobileMenu} to="/gatsby" activeStyle={{color: "#000", fontWeight: "bolder"}}>
+                    <ListItem>Gallery</ListItem>
+                </Link>
+                <Link onMouseEnter onClick={closeMobileMenu} to="/artists" activeStyle={{color: "#000", fontWeight: "bolder"}}>
+                    <ListItem>
+                        Artists &nbsp; <Caret/>
+                    </ListItem>
+                </Link>
+                {dropdown && <Dropdown/> }
+                <Link onClick={closeMobileMenu} to="/contact" activeStyle={{color: "#000", fontWeight: "bolder"}}>
+                    <ListItem>Contact</ListItem>
+                </Link>
+            </LinksList>
         </NavBar>
     )
 }
 
 export default Nav
+
 
 /*
 
