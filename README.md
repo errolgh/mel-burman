@@ -130,4 +130,10 @@ $grid-breakpoints: (
 ```
 
 ## SET UP
-download gatsby-source-strapi and add your collection types
+### Strapi
+- download gatsby-source-strapi and add your collection types, in this case, in our gatsby-config.js
+- navigate to strapi localhost to create your collection types and relationship models
+
+
+### Gatsby UI
+- react icons makes life 1,000,000,000% easier, and supports many icon libraries in one [package](https://github.com/react-icons/react-icons))
