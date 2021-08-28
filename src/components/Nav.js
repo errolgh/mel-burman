@@ -28,7 +28,6 @@ const Logo = styled.div`
 const LinksList = styled.ul`
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
     justify-content: start;
     width: 100%;
     height: 90vh;
@@ -40,7 +39,7 @@ const LinksList = styled.ul`
     padding: 0;
     position: absolute;
     top: 10vh;
-    left: -100%; // this is the code the makes it drawer from the left
+    left: -100%;
     opacity: 0;
     transition: all 0.6s ease;
     
@@ -52,26 +51,25 @@ const LinksList = styled.ul`
         width: auto;
         flex-direction: row;
     }
-
+    
     &.active {
         left: 0;
         opacity: 1;
-        /* transition: all 0.6s ease; */
         z-index: 1;
     }
-`;
+    `;
 
 const ListItem = styled.li`
     transition: 0.5s;
     padding: 4vh 20px;
     align-items: center;
+    text-transform: uppercase;
     justify-content: center;
     background: #fafafa;
     height: 80px;
     display: flex;
-
+    
     @media(min-width: 768px) {
-        /* display: block; */
         height: 100%;
     }
     &:hover {
@@ -98,21 +96,20 @@ const Nav = () => {
     const closeMobileMenu = () => setClick(false)
 
     const onMouseEnter = () => {
-        // if (window.innerWidth < 960) {
-        //     setDropdown(false)
-        // } else {
-            setDropdown(true)
-        // }
+        if (window.innerWidth < 768) {
+            setDropdown(false) // mobile
+        } else {
+            setDropdown(true) // desktop
+        }
     }
 
     const onMouseLeave = () => {
-        if (window.innerWidth < 960) {
-            setDropdown(false)
+        if (window.innerWidth < 768) {
+            setDropdown(false) // mobile
         } else {
-            setDropdown(false)
+            setDropdown(false) // desktop
         }
     }
-    // apparently <Link /> belongs on the inner most....
     return (
         <NavBar>
             <Logo>
@@ -121,23 +118,38 @@ const Nav = () => {
             <HamburgerIcon onClick={handleClick}> 
                 {click ? <FaTimes/> : <FaBars/>}
             </HamburgerIcon>
+
             <LinksList className={click ? 'active' : ''}>
+
                 <Link onClick={closeMobileMenu} to="/" activeStyle={{color: "#000", fontWeight: "bolder"}}>
                     <ListItem>Home</ListItem>
                 </Link>
-                <Link onClick={closeMobileMenu} to="/gatsby" activeStyle={{color: "#000", fontWeight: "bolder"}}>
+
+                <Link onClick={closeMobileMenu} to="/gallery" activeStyle={{color: "#000", fontWeight: "bolder"}}>
                     <ListItem>Gallery</ListItem>
                 </Link>
-                <Link onMouseEnter onClick={closeMobileMenu} to="/artists" activeStyle={{color: "#000", fontWeight: "bolder"}}>
-                    <ListItem>
-                        Artists &nbsp; <Caret/>
+
+                <Link 
+                    to="/artists"
+                    activeStyle={{color: "#000", fontWeight: "bolder"}}
+                    onClick={closeMobileMenu}
+                >
+                    <ListItem
+                        onMouseEnter={onMouseEnter}
+                        onMouseLeave={onMouseLeave}
+                    >
+                        Artists &nbsp;<Caret/>
                     </ListItem>
                 </Link>
-                {dropdown && <Dropdown/> }
+
+                {dropdown && <Dropdown/>}
+
                 <Link onClick={closeMobileMenu} to="/contact" activeStyle={{color: "#000", fontWeight: "bolder"}}>
                     <ListItem>Contact</ListItem>
                 </Link>
+
             </LinksList>
+
         </NavBar>
     )
 }
