@@ -41,7 +41,7 @@ const LinksList = styled.ul`
     font-weight: lighter;
     color: #595959;
     opacity: 0;
-    transition: all 0.6s ease;
+    transition: all 600ms ease;
     
     @media(min-width: 768px){
         opacity: 1;
@@ -57,7 +57,7 @@ const LinksList = styled.ul`
         opacity: 1;
         /* z-index: 1; */
     }
-    `;
+`;
 
 const ListItem = styled.li`
     transition: 0.5s;
@@ -81,13 +81,16 @@ const DropdownLinkContainer = styled.div``;
 
 const DropdownListContainer = styled.div`
     position: relative;
-    /* width: 100%; */
-    /* z-index: 1000; */
-
+    max-height: 0;
+    transition: max-height 600ms ease-out;
+    
     @media(min-width: 768px) {
-        /* padding-top: 5px; */
         bottom: 10vh;
         right: 10px;
+    }
+
+    &.active {
+        max-height: 1000px;
     }
 `;
 
@@ -149,7 +152,7 @@ const Nav = () => {
                             Artists &nbsp;<Caret/>
                         </ListItem>
                     </Link>
-                    <DropdownListContainer>
+                    <DropdownListContainer className={dropdown ? 'active' : ''}>
                         {dropdown && <Dropdown/>}
                     </DropdownListContainer>
                 </DropdownLinkContainer>

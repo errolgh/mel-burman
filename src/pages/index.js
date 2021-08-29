@@ -4,12 +4,11 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { graphql } from 'gatsby'
 import TagLine from '../components/TagLine'
-import melWithMug from '../../static/melwithmug.jpg'
+import melHero from '../../static/mel-hero.jpg'
 import styled from 'styled-components'
 
 
 const ImageContainer = styled.div`
-  /* width: 100%; */
 `
 
 const HeroImage = styled.img`
@@ -28,7 +27,7 @@ export default function Home( { data }) {
         // article
       />
       <ImageContainer>
-        <HeroImage src={melWithMug} alt=""/>
+        <HeroImage src={melHero} alt=""/>
       </ImageContainer>
       <TagLine />
       {/* fix index imports and .env file

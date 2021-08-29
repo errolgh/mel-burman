@@ -8,7 +8,7 @@ const HeroContainer = styled.div`
     background-image: url(${hero});
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 80vh;
+    min-height:90vh;
     background-size: cover;
 `;
 

@@ -27,6 +27,7 @@ const DropdownMenu = styled.ul`
     position: relative;
     padding: 10px;
     
+    
     @media(min-width: 768px) {
         padding: 0px;
         width: 250px;
@@ -47,6 +48,7 @@ const DropdownItem = styled.li`
     background: #fafafa;
     cursor: pointer;
     padding: 5px;
+    transition: background 600ms ease;
 
     &:hover {
         background: #E9E9E9;
