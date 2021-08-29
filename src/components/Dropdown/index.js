@@ -23,11 +23,19 @@ const arrOfArtists = [
 ]; 
 
 const DropdownMenu = styled.ul`
-    width: 250px;
-    position: absolute;
-    top: 10vh;
-    list-style: none;
-    text-align: start;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    
+    @media(min-width: 768px) {
+        padding: 0px;
+        width: 250px;
+        position: absolute;
+        left: 10px;
+        top: 10vh;
+        list-style: none;
+        text-align: start;
+    }
     
     
     &.clicked {
@@ -56,7 +64,8 @@ const DropdownLink = styled.div`
 function Dropdown () {
     const [ click, setClick ] = useState(false)
 
-    const handleClick = () => setClick(true)
+    // const handleClick = () => setClick(!click)
+    const handleClick = () => setClick(false)
 
     return (
         <DropdownMenu onClick={handleClick} className={click ? 'clicked' : ''}>

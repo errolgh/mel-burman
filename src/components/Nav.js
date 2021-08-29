@@ -77,6 +77,22 @@ const ListItem = styled.li`
     }
 `;
 
+const DropdownLinkContainer = styled.div`
+
+`;
+
+const DropdownListContainer = styled.div`
+    position: relative;
+    width: 100%;
+    
+
+    @media(min-width: 768px) {
+        /* padding-top: 5px; */
+        bottom: 10vh;
+        right: 10px;
+    }
+`;
+
 const HamburgerIcon = styled.div`
     cursor: pointer;
     color: #595959;
@@ -90,14 +106,15 @@ const HamburgerIcon = styled.div`
 
 const Nav = () => {
     const [ click, setClick ] = useState(false)
-    const [ dropdown, setDropdown ] = useState(false)
+    // const [ dropdown, setDropdown ] = useState(false) /////// testing state
+    const [ dropdown, setDropdown ] = useState(true)
 
     const handleClick = () => setClick(!click)  // toggle hamburger menu icon
     const closeMobileMenu = () => setClick(false)
 
     const onMouseEnter = () => {
         if (window.innerWidth < 768) {
-            setDropdown(false) // mobile
+            setDropdown(true) // mobile
         } else {
             setDropdown(true) // desktop
         }
@@ -129,20 +146,16 @@ const Nav = () => {
                     <ListItem>Gallery</ListItem>
                 </Link>
 
-                <Link 
-                    to="/artists"
-                    activeStyle={{color: "#000", fontWeight: "bolder"}}
-                    onClick={closeMobileMenu}
-                >
-                    <ListItem
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
-                    >
-                        Artists &nbsp;<Caret/>
-                    </ListItem>
-                </Link>
-
-                {dropdown && <Dropdown/>}
+                <DropdownLinkContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <Link to="/gallery" activeStyle={{color: "#000", fontWeight: "bolder"}} onClick={closeMobileMenu}>
+                        <ListItem>
+                            Artists &nbsp;<Caret/>
+                        </ListItem>
+                    </Link>
+                    <DropdownListContainer>
+                        {dropdown && <Dropdown/>}
+                    </DropdownListContainer>
+                </DropdownLinkContainer>
 
                 <Link onClick={closeMobileMenu} to="/contact" activeStyle={{color: "#000", fontWeight: "bolder"}}>
                     <ListItem>Contact</ListItem>
