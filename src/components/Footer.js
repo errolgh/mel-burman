@@ -128,12 +128,12 @@ const Footer = () => {
                                 <FontAwesomeIcon icon={faInstagram} size="2x" />
                             </Link>
                         </SocialIcon>
-                        <SocialIcon>
+                        {/* <SocialIcon>
                             <Link href="mailto: melskibro@gmail.com" target="_blank">
                                 <FontAwesomeIcon icon={faEnvelope} size="2x" />
                             </Link>
-                        </SocialIcon>
-                        <SocialIcon>
+                        </SocialIcon> */}
+                        {/* <SocialIcon>
                             <CopyToClipboard
                                 style={{cursor: "pointer"}}
                                 text={data.site.siteMetadata.siteUrl}
@@ -142,7 +142,7 @@ const Footer = () => {
                                 target="_blank">
                                     <FontAwesomeIcon icon={faShareAlt} size="2x" />
                             </CopyToClipboard>
-                        </SocialIcon>
+                        </SocialIcon> */}
                     </SocialList>
                 </SocialContainer>
             </FirstFooterRow>

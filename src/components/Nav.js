@@ -77,7 +77,7 @@ const ListItem = styled.li`
     }
 `;
 
-const DropdownLinkContainer = styled.div``;
+const ArtistLinkContainer = styled.div``;
 
 const DropdownListContainer = styled.div`
     position: relative;
@@ -87,9 +87,11 @@ const DropdownListContainer = styled.div`
     @media(min-width: 768px) {
         bottom: 10vh;
         right: 10px;
+        opacity: 0;
     }
 
     &.active {
+        opacity: 1;
         max-height: 1000px;
     }
 `;
@@ -107,11 +109,13 @@ const HamburgerIcon = styled.div`
 
 const Nav = () => {
     const [ click, setClick ] = useState(false)
+    // const [ dropdown, setDropdown ] = useState(true)  //// testing state
     const [ dropdown, setDropdown ] = useState(false)
 
     const handleClick = () => setClick(!click)  // toggle hamburger menu icon
     const closeMobileMenu = () => setClick(false)
 
+    // move this to an onClick at least on mobile
     const onMouseEnter = () => {
         if (window.innerWidth < 768) {
             setDropdown(true) // mobile
@@ -146,7 +150,7 @@ const Nav = () => {
                     <ListItem>Gallery</ListItem>
                 </Link>
 
-                <DropdownLinkContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                <ArtistLinkContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <Link to="/gallery" activeStyle={{color: "#000", fontWeight: "bolder"}} onClick={closeMobileMenu}>
                         <ListItem>
                             Artists &nbsp;<Caret/>
@@ -155,7 +159,7 @@ const Nav = () => {
                     <DropdownListContainer className={dropdown ? 'active' : ''}>
                         {dropdown && <Dropdown/>}
                     </DropdownListContainer>
-                </DropdownLinkContainer>
+                </ArtistLinkContainer>
 
                 <Link onClick={closeMobileMenu} to="/contact" activeStyle={{color: "#000", fontWeight: "bolder"}}>
                     <ListItem>Contact</ListItem>

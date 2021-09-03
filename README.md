@@ -137,3 +137,6 @@ $grid-breakpoints: (
 
 ### Gatsby UI
 - react icons makes life 1,000,000,000% easier, and supports many icon libraries in one [package](https://github.com/react-icons/react-icons))
+
+### Development
+- `gatsby develop -H 0.0.0.0` for mobile development, you can find the development URL at `http://192.168.1.3:8000/`
